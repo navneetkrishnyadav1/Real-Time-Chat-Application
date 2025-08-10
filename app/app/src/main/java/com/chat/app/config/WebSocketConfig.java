@@ -22,6 +22,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         //set message broker
         registry.enableSimpleBroker("/topic"); //    /topic/chatroom1
         //except message with /api/send-message
-        registry.setApplicationDestinationPrefixes("app");
+        registry.setApplicationDestinationPrefixes("/app");
     }
 }
