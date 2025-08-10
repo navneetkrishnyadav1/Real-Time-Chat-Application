@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/bundles/stomp.umd.js"></script>
+</head>
+<body>
+<div class="container mt-4" >
+    <h1 class="text-center">Chat Application</h1>
+    <div id="chat" class="border rounded p-3 mb-3"
+         style="height: 300px; overflow-y: auto;">
+    </div>
+    <div class="input-group mb-3">
+        <input id="senderInput" type="text" class="form-control"
+        placeholder="Your name..."/>
+    </div>
+    <div class="input-group mb-3">
+        <input id="messageInput" type="text" class="form-control"
+               placeholder="Type a message..."/>
+        <div id="input-group-append">
+            <button id="sendMessage" class="btn btn-primary">Send</button>>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function setConnected(connected){
+    document.getElementById('sendMessage').disabled = !connected;
+    }
+    function connect(){
+    var socket = new SockJS('/chat');
+    stompClient = Stomp.over(Socket);
+    stompClient.connect({}, function (frame) {
+    setConnected(true);
+    });
+    }
+</script>
+</html>
